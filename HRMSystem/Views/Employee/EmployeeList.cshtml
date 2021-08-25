@@ -1,0 +1,110 @@
+﻿@model IEnumerable<HRMSystem.Context.EmployeeTable>
+
+<p>
+    @Html.ActionLink("Create New", "AddEmployee")
+</p>
+<h2>Personal Information</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </th>
+
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nationality)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+        }
+
+    </table>
+    <h2>Contact Information</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            </tr>
+
+            @foreach (var item1 in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item1.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item1.PhoneNumber)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item1.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item1.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item1.ID })
+                </td>
+            </tr>
+            }
+         
+        </table>
+
+        <h2>Employee Status</h2>
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.SupervisorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Department)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmployeeStatus)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item2 in Model)
+            {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item2.SupervisorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.EmployeeStatus)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item2.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item2.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item2.ID })
+                </td>
+                </tr>
+            }
+
+        </table>

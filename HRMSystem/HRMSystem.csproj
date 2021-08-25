@@ -52,10 +52,10 @@
       <HintPath>..\DAL\bin\Debug\DAL.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -144,13 +144,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Employee.aspx.cs">
-      <DependentUpon>Employee.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Employee.aspx.designer.cs">
-      <DependentUpon>Employee.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Context\EmployeeTable.cs">
       <DependentUpon>EmpModel.tt</DependentUpon>
     </Compile>
@@ -173,42 +166,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Payroll.aspx.cs">
-      <DependentUpon>Payroll.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Payroll.aspx.designer.cs">
-      <DependentUpon>Payroll.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Performance.aspx.cs">
-      <DependentUpon>Performance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Performance.aspx.designer.cs">
-      <DependentUpon>Performance.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resignation.aspx.cs">
-      <DependentUpon>Resignation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Resignation.aspx.designer.cs">
-      <DependentUpon>Resignation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Resume Tracking.aspx.cs">
-      <DependentUpon>Resume Tracking.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Resume Tracking.aspx.designer.cs">
-      <DependentUpon>Resume Tracking.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Training.aspx.cs">
-      <DependentUpon>Training.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Training.aspx.designer.cs">
-      <DependentUpon>Training.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminView.aspx" />
@@ -216,7 +174,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Employee.aspx" />
     <Content Include="Context\EmpModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EmpModel.edmx</DependentUpon>
@@ -233,10 +190,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\1.jpg" />
-    <Content Include="Payroll.aspx" />
-    <Content Include="Performance.aspx" />
-    <Content Include="Resignation.aspx" />
-    <Content Include="Resume Tracking.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -264,7 +217,6 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Styles\font-awesome.min.css" />
     <Content Include="Styles\style.css" />
-    <Content Include="Training.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -282,6 +234,9 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\SignIn.cshtml" />
     <Content Include="Views\Employee\Employee.cshtml" />
+    <Content Include="Views\Employee\AddEmployee.cshtml" />
+    <Content Include="Views\Employee\EmployeeList.cshtml" />
+    <Content Include="Views\Employee\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
