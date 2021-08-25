@@ -33,7 +33,8 @@ namespace HRMSystem.Controllers
             Boolean ans = d.Login(acc.id, acc.Password);
             if(ans)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index","Home");
+                
             }
 
             
