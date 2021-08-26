@@ -1,0 +1,58 @@
+PayRollAdd
+
+CREATE procedure PayRoll_Add
+@BasicPay money,
+@Allowances money,
+@Deductions money,
+@GrossPay money,
+@NetPay money
+AS
+BEGIN
+INSERT into PayRollTables values(
+@BasicPay,
+@Allowances,
+@Deductions,
+@GrossPay,
+@NetPay
+)
+END
+---------------
+PayRollDelete
+
+CREATE proc PayRoll_Deleting
+@ID int
+AS
+BEGIN
+DELETE from PayRollTables where ID=@ID
+END
+-----------------
+PayRollList
+
+CREATE procedure PayRoll_Lists
+@ID int
+AS
+BEGIN
+SELECT * from PayRollTables where ID = @ID
+END
+--------------------
+PayRollUpdate
+
+CREATE proc PayRoll_Updating
+@ID int,
+@BasicPay money,
+@Allowances money,
+@Deductions money,
+@GrossPay money,
+@NetPay money
+AS
+BEGIN
+UPDATE PayRollTables
+SET 
+
+BasicPay = @BasicPay,
+Allowances = @Allowances,
+Deductions = @Deductions,
+GrossPay = @GrossPay,
+NetPay = @NetPay
+END
+--------------------
