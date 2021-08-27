@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BAL;
+
+namespace DAL
+{
+    public class TrainingDAL
+    {
+        public void Add_Training(TrainingBAL data)
+        {
+            // SqlConnection con1 = Connect();
+            SqlConnection con1 = new SqlConnection("Data Source=WIN-H2BOI1OIV30;Initial Catalog=HRMSystem;Integrated Security=True");
+
+            SqlCommand cmd = new SqlCommand("Add_Training", con1);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID", data.ID);
+            cmd.Parameters.AddWithValue("@TrainingName", data.TrainingName);
+            cmd.Parameters.AddWithValue("@Were_You_PreviouslyEmployed", data.Were_You_PreviouslyEmployed);
+            cmd.Parameters.AddWithValue("@TrainingStatus", data.TrainingStatus);
+            cmd.Parameters.AddWithValue("@TrainingExperienceDetail", data.TrainingExperienceDetail);
+            cmd.Parameters.AddWithValue("@TrainingPeriod",data.TrainingPeriod);
+            
+            con1.Open();
+            cmd.ExecuteNonQuery();
+            con1.Close();
+        }
+
+        private static SqlConnection Connect()
+        {
+            return new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
+        }
+
+        public void Update_Training(TrainingBAL data)
+        {
+            SqlConnection con1 = new SqlConnection("Data Source=WIN-H2BOI1OIV30;Initial Catalog=HRMSystem;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand("Update_Training", con1);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID", data.ID);
+            cmd.Parameters.AddWithValue("@TrainingName", data.TrainingName);
+
+            cmd.Parameters.AddWithValue("@Were_You_PreviouslyEmployed", data.Were_You_PreviouslyEmployed);
+            cmd.Parameters.AddWithValue("@TrainingStatus", data.TrainingStatus);
+            cmd.Parameters.AddWithValue("@TrainingExperienceDetail", data.TrainingExperienceDetail);
+            cmd.Parameters.AddWithValue("@TrainingPeriod", data.TrainingPeriod);
+
+            con1.Open();
+            cmd.ExecuteNonQuery();
+            con1.Close();
+
+        }
+
+        public List<TrainingBAL> Show_Training()
+        {
+            SqlConnection con1 = new SqlConnection("Data Source=WIN-H2BOI1OIV30;Initial Catalog=HRMSystem;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[ShowTrainingList] ()", con1);
+            con1.Open();
+            SqlDataReader dr=cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            con1.Close();
+            List<TrainingBAL> li = new List<TrainingBAL>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                TrainingBAL b = new TrainingBAL();
+                b.ID = Convert.ToInt32(dt.Rows[i]["ID"]);
+                b.TrainingName = dt.Rows[i]["TrainingName"].ToString();
+                b.Were_You_PreviouslyEmployed = dt.Rows[i]["Were_You_PreviouslyEmployed"].ToString();
+                b.TrainingStatus = dt.Rows[i]["TrainingStatus"].ToString();
+                b.TrainingExperienceDetail = dt.Rows[i]["TrainingExperienceDetail"].ToString();
+                b.TrainingPeriod = Convert.ToDateTime( dt.Rows[i]["TrainingPeriod"]);
+                li.Add(b);
+            }
+            
+            return li ;
+
+
+        }
+
+        public void Delete_Training(int id)
+        {
+            SqlConnection con1 = new SqlConnection("Data Source=WIN-H2BOI1OIV30;Initial Catalog=HRMSystem;Integrated Security=True");
+
+            //SqlConnection con1 = Connect();
+            SqlCommand cmd = new SqlCommand("Training_Deleting", con1);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID", id);
+            con1.Open();
+            cmd.ExecuteNonQuery();
+            con1.Close();
+
+
+        }
+
+
+    }
+}
+    
