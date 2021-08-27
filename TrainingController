@@ -1,0 +1,94 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using DAL;
+using BAL;
+using System.Data;
+using HRMSystem.Models;
+
+namespace HRMSystem.Controllers
+{
+    public class TrainingController : Controller
+    {
+        TrainingDAL dalTraining = new TrainingDAL();
+        // GET: PayRoll
+        [HttpGet]
+        public ActionResult Show_Training()
+        {
+            List<TrainingBAL> list = dalTraining.Show_Training();
+            List<TrainingClass> modellist = new List<TrainingClass>();
+            foreach (var item in list)
+            {
+                TrainingClass c = new TrainingClass();
+                c.ID = item.ID;
+                c.TrainingExperienceDetail = item.TrainingExperienceDetail;
+                c.TrainingName = item.TrainingName;
+                c.Were_You_PreviouslyEmployed = item.Were_You_PreviouslyEmployed;
+                c.TrainingStatus = item.TrainingStatus;
+                c.TrainingPeriod = item.TrainingPeriod;
+
+
+
+                modellist.Add(c);
+            }
+            return View(modellist);
+        }
+        //[HttpPost]
+        //public ActionResult Show_Training()
+        //{
+            
+        //    ViewBag.ab = ds.Tables[0];
+        //    return View();
+        //}
+
+        public ActionResult Add_Training()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Add_Training(TrainingClass form)
+        {
+            BAL.TrainingBAL training = new TrainingBAL();
+            training.ID = form.ID;
+            training.TrainingName = form.TrainingName;
+            training.Were_You_PreviouslyEmployed = form.Were_You_PreviouslyEmployed;
+            training.TrainingStatus = form.TrainingStatus;
+            training.TrainingExperienceDetail = form.TrainingExperienceDetail;
+            training.TrainingPeriod = form.TrainingPeriod;
+            
+            dalTraining.Add_Training(training);
+            TempData["message"] = "Data is Inserted";
+            return RedirectToAction("Show_Training");
+        }
+
+        public ActionResult Update_Training(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Update_Training(int id,TrainingClass form)
+        {
+            BAL.TrainingBAL training = new TrainingBAL();
+            training.ID = form.ID;
+            training.TrainingName = form.TrainingName;
+            training.Were_You_PreviouslyEmployed = form.Were_You_PreviouslyEmployed;
+            training.TrainingStatus = form.TrainingStatus;
+            training.TrainingExperienceDetail = form.TrainingExperienceDetail;
+            training.TrainingPeriod = form.TrainingPeriod;
+
+            dalTraining.Update_Training(training);
+            TempData["message"] = "Data is Inserted";
+            return RedirectToAction("Show_Training");
+        }
+
+        public ActionResult Delete_Training(int id)
+        {
+            dalTraining.Delete_Training(id);
+            TempData["message"] = "Data is Deleted";
+            return RedirectToAction("Show_Training");
+        }
+    }
+}
